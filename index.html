@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .wheel {
+            width: 350px;
+            height: 350px;
+            background: conic-gradient(#f39c12 0deg 36deg,
+                    #e74c3c 36deg 72deg,
+                    #9b59b6 72deg 108deg,
+                    #3498db 108deg 144deg,
+                    #1abc9c 144deg 180deg,
+                    #27ae60 180deg 216deg,
+                    #2980b9 216deg 252deg,
+                    #d35400 252deg 288deg,
+                    #c0392b 288deg 324deg,
+                    #8e44ad 324deg 360deg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(0deg);
+            transition: transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            position: relative;
+        }
+
+        .wheel::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .wheel-container:hover .wheel::before {
+            animation: pulse 1s infinite;
+        }
+
+
+
+        /* Continue with the same logic for other color segments */
+
+        .spin-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .spin-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .spin-button:hover {
+            background-color: #2980b9;
+        }
+
+        .triangle {
+            position: relative;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 40px solid black;
+            top: -20px;
+            transform-origin: bottom center;
+            transform: rotate(0deg);
+            z-index: 1;
+        }
+
+        .triangle-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .color-segment-text {
+            position: absolute;
+            top: calc(50% - 100px);
+            left: calc(50% - 15px);
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .color-segment-text span {
+            display: block;
+            text-align: center;
+        }
+
+        .question-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .question {
+
+            font-size: 24px;
+            font-weight: bold;
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .option {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: #2980b9;
+        }
+
+        .correct-answer {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+            text-shadow: 2px 2px 4px rgba(39, 174, 96, 0.7);
+            /* Yansıma rengi ve gölge boyutu */
+        }
+
+        /* Doğru cevap yansıması için stil */
+        .correct-answer {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+            /* Doğru cevap rengi */
+            text-shadow: 2px 2px 4px rgba(39, 174, 96, 0.7);
+            /* Yansıma rengi ve gölge boyutu */
+            transition: color 0.3s;
+            /* Renk değişim animasyonu */
+        }
+
+        /* Yanlış cevap yansıması için stil */
+        .incorrect-answer {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+            /* Yanlış cevap rengi */
+            text-shadow: 2px 2px 4px rgba(231, 76, 60, 0.7);
+            /* Yansıma rengi ve gölge boyutu */
+            transition: color 0.3s;
+            /* Renk değişim animasyonu */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wheel-container">
+        <div class="wheel">
+            <div class="color-segment" style="transform: rotate(-10deg);">
+                <div class="color-segment-text">
+                    <span>coffee</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(25deg);">
+                <div class="color-segment-text">
+                    <span>tea</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(62deg);">
+                <div class="color-segment-text">
+                    <span>love</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(98deg);">
+                <div class="color-segment-text">
+                    <span>travel</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(134deg);">
+                <div class="color-segment-text">
+                    <span>breakfast</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(170deg);">
+                <div class="color-segment-text">
+                    <span>sleep</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(206deg);">
+                <div class="color-segment-text">
+                    <span>vacation</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(242deg);">
+                <div class="color-segment-text">
+                    <span>evening</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(278deg);">
+                <div class="color-segment-text">
+                    <span>shower</span>
+                </div>
+            </div>
+            <div class="color-segment" style="transform: rotate(314deg);">
+                <div class="color-segment-text">
+                    <span>dessert</span>
+                </div>
+            </div>
+            <div class="arrow"></div>
+        </div>
+        <div class="triangle"></div>
+        <div class="spin-button-container">
+            <button class="spin-button" onclick="spinWheel()">Spin</button>
+            <div class="correct-answer" id="correct-answer">Correct Answer: Not Yet Selected</div>
+        </div>
+        <div class="question-container">
+            <div class="question"></div>
+            <div class="options">
+                <button class="option" onclick="checkAnswer(0)"></button>
+                <button class="option" onclick="checkAnswer(1)"></button>
+                <button class="option" onclick="checkAnswer(2)"></button>
+                <button class="option" onclick="checkAnswer(3)"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wheel = document.querySelector('.wheel');
+        const spinButton = document.querySelector('.spin-button');
+        const questionContainer = document.querySelector('.question-container');
+        const questionText = document.querySelector('.question');
+        const answerButtons = document.querySelectorAll('.option');
+        const correctAnswerMessage = document.getElementById('correct-answer');
+        let spinning = false;
+
+        // Create an object containing questions and answers
+        const questionsAndAnswers = [
+            {
+                question: "What color is coffee?",
+                wrongAnswers: ["Blue", "Green", "Yellow"],
+                correctAnswer: "Brown"
+            },
+            {
+                question: "Which drink is made from tea leaves?",
+                wrongAnswers: ["Orange juice", "Cola", "Milk"],
+                correctAnswer: "Tea"
+            },
+            {
+                question: "Which word represents love?",
+                wrongAnswers: ["Car", "House", "Dog"],
+                correctAnswer: "Love"
+            },
+            {
+                question: "Which one is a type of vacation activity?",
+                wrongAnswers: ["Shopping", "Doctor's appointment", "Business meeting"],
+                correctAnswer: "Travel"
+            },
+            {
+                question: "Which drink is made with hot water?",
+                wrongAnswers: ["Orange juice", "Cola", "Milk"],
+                correctAnswer: "Tea"
+            },
+            {
+                question: "Which word represents happiness?",
+                wrongAnswers: ["Car", "House", "Dog"],
+                correctAnswer: "Love"
+            },
+            {
+                question: "Which one is a fruit juice?",
+                wrongAnswers: ["Coffee", "Tea", "Milk"],
+                correctAnswer: "Orange juice"
+            },
+            {
+                question: "Which word represents a trip?",
+                wrongAnswers: ["Car", "House", "Dog"],
+                correctAnswer: "Travel"
+            },
+            {
+                question: "Which drink is obtained from cows?",
+                wrongAnswers: ["Orange juice", "Cola", "Tea"],
+                correctAnswer: "Milk"
+            },
+            {
+                question: "Which word represents a home?",
+                wrongAnswers: ["Car", "Love", "Dog"],
+                correctAnswer: "House"
+            },
+            {
+                question: "Which one is a dessert?",
+                wrongAnswers: ["Coffee", "Tea", "Milk"],
+                correctAnswer: "Dessert"
+            },
+            {
+                question: "Which drink is made with plant leaves?",
+                wrongAnswers: ["Orange juice", "Cola", "Milk"],
+                correctAnswer: "Tea"
+            },
+            {
+                question: "Which word corresponds to a car?",
+                wrongAnswers: ["House", "Love", "Dog"],
+                correctAnswer: "Car"
+            },
+            {
+                question: "Which one is a breakfast item?",
+                wrongAnswers: ["Cola", "Tea", "Milk"],
+                correctAnswer: "Coffee"
+            },
+            {
+                question: "Which drink is made with milk?",
+                wrongAnswers: ["Orange juice", "Coffee", "Tea"],
+                correctAnswer: "Coffee"
+            },
+            {
+                question: "Which word represents a dog?",
+                wrongAnswers: ["Car", "House", "Love"],
+                correctAnswer: "Dog"
+            },
+            {
+                question: "Which one is an evening activity?",
+                wrongAnswers: ["Shopping", "Doctor's appointment", "Business meeting"],
+                correctAnswer: "Evening"
+            },
+            {
+                question: "Which drink is served cold?",
+                wrongAnswers: ["Coffee", "Tea", "Milk"],
+                correctAnswer: "Cola"
+            },
+            {
+                question: "Which word represents a dessert?",
+                wrongAnswers: ["Car", "House", "Dog"],
+                correctAnswer: "Dessert"
+            }
+        ];
+
+        function spinWheel() {
+            if (spinning) return;
+            spinning = true;
+            let totalDegrees = 0;
+            const randomSpins = Math.floor(Math.random() * 10) + 7;
+            const degreesPerSpin = 400;
+            const spinInterval = setInterval(() => {
+                totalDegrees += degreesPerSpin * randomSpins;
+                const totalRotation = `rotate(${totalDegrees}deg)`;
+                wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
+                wheel.style.transform = totalRotation;
+                clearInterval(spinInterval);
+                spinning = false;
+                // Select a random question
+                const randomQuestionIndex = Math.floor(Math.random() * questionsAndAnswers.length);
+                const selectedQuestion = questionsAndAnswers[randomQuestionIndex];
+                questionText.textContent = selectedQuestion.question;
+                // Randomly shuffle the answers
+                const answers = shuffle([...selectedQuestion.wrongAnswers, selectedQuestion.correctAnswer]);
+                // Place the answers into the buttons
+                for (let i = 0; i < answerButtons.length; i++) {
+                    answerButtons[i].textContent = answers[i];
+                    // Add a data attribute to each button with the correct answer
+                    answerButtons[i].dataset.correctAnswer = selectedQuestion.correctAnswer;
+                }
+                correctAnswerMessage.textContent = 'Correct Answer: Not Yet Selected';
+            }, 100);
+        }
+
+        // Helper function to shuffle an array
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Answer checking function
+        // Answer checking function
+        function checkAnswer(index) {
+            if (spinning) return;
+
+            // İlk olarak tüm yanıtların rengini varsayılan renge döndürün
+            for (let i = 0; i < answerButtons.length; i++) {
+                answerButtons[i].style.backgroundColor = "#3498db"; // Varsayılan renk
+                answerButtons[i].style.color = "white"; // Beyaz metin rengi
+            }
+
+            const selectedAnswer = answerButtons[index].textContent;
+            const selectedQuestion = questionText.textContent;
+            const correctAnswer = answerButtons[index].dataset.correctAnswer;
+
+            if (selectedAnswer === correctAnswer) {
+                correctAnswerMessage.textContent = `Correct Answer: ${selectedAnswer}`;
+                correctAnswerMessage.classList.remove('incorrect-answer');
+                correctAnswerMessage.classList.add('correct-answer');
+            } else {
+                correctAnswerMessage.textContent = `Sorry, wrong answer. Correct Answer: ${correctAnswer}`;
+                correctAnswerMessage.classList.remove('correct-answer');
+                correctAnswerMessage.classList.add('incorrect-answer');
+            }
+
+            // Seçilen yanıtın rengini değiştirin
+            answerButtons[index].style.backgroundColor = "#e74c3###c"; // Seçilen yanıtın rengi (#e74c3c)
+            answerButtons[index].style.color = "white"; // Beyaz metin rengi
+
+            // Yeni bir soru sorduğunuzda yanıtların rengini varsayılana döndürün
+            setTimeout(() => {
+                for (let i = 0; i < answerButtons.length; i++) {
+                    answerButtons[i].style.backgroundColor = "#3498db"; // Varsayılan renk
+                    answerButtons[i].style.color = "white"; // Beyaz metin rengi
+                }
+            }, 3000); // 1000 milisaniye (1 saniye) sonra renkleri sıfırlayın
+        }
+
+       
+
+
+        // Show a random question initially
+        spinWheel();
+    </script>
+</body>
+
+</html>

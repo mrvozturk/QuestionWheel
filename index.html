@@ -4,459 +4,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+        /* Reset CSS */
+        * {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 0;
         }
 
-        .wheel-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .wheel {
-            width: 350px;
-            height: 350px;
-            background: conic-gradient(#f39c12 0deg 36deg,
-                    #e74c3c 36deg 72deg,
-                    #9b59b6 72deg 108deg,
-                    #3498db 108deg 144deg,
-                    #1abc9c 144deg 180deg,
-                    #27ae60 180deg 216deg,
-                    #2980b9 216deg 252deg,
-                    #d35400 252deg 288deg,
-                    #c0392b 288deg 324deg,
-                    #8e44ad 324deg 360deg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(0deg);
-            transition: transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-            position: relative;
-        }
-
-        .wheel::before {
-            content: "";
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: white;
-            border-radius: 50%;
-        }
-
-        .wheel-container:hover .wheel::before {
-            animation: pulse 1s infinite;
-        }
-
-
-
-        /* Continue with the same logic for other color segments */
-
-        .spin-button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .spin-button {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #3498db;
+        body {
+            background-color: black;
+            background: radial-gradient(#0001, #0007), url(https://res.cloudinary.com/ez-nettools/image/upload/v1667853901/wood_texture_qch5w5.webp) top center;
             color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 18px;
+            font-family: 'Exo 2', sans-serif;
         }
 
-        .spin-button:hover {
-            background-color: #2980b9;
+        a {
+            color: #34495e;
         }
 
-        .triangle {
+        /* WRAPPER */
+        #wrapper {
+            margin: 40px auto 0;
+            width: 266px;
             position: relative;
+        }
+
+       
+
+        /* WHEEL */
+        #wheel {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #fff;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px, rgba(0, 0, 0, 0.05) 0px 3px 0px;
+            transform: rotate(0deg);
+        }
+
+        #wheel:before {
+            content: '';
+            position: absolute;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 242px;
+            height: 242px;
+            border-radius: 50%;
+            z-index: 1000;
+        }
+
+        #inner-wheel {
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all 6s cubic-bezier(0, .99, .44, .99);
+            -moz-transition: all 6 cubic-bezier(0, .99, .44, .99);
+            -o-transition: all 6s cubic-bezier(0, .99, .44, .99);
+            -ms-transition: all 6s cubic-bezier(0, .99, .44, .99);
+            transition: all 6s cubic-bezier(0, .99, .44, .99);
+        }
+
+        #wheel div.sec {
+            position: absolute;
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 40px solid black;
-            top: -20px;
-            transform-origin: bottom center;
-            transform: rotate(0deg);
-            z-index: 1;
+            border-style: solid;
+            border-width: 130px 75px 0;
+            border-color: #19c transparent;
+            transform-origin: 75px 129px;
+            left: 50px;
+            top: -4px;
+            opacity: 1;
         }
 
-        .triangle-content {
+        #wheel div.sec:nth-child(1) {
+            transform: rotate(60deg);
+            -webkit-transform: rotate(60deg);
+            -moz-transform: rotate(60deg);
+            -o-transform: rotate(60deg);
+            -ms-transform: rotate(60deg);
+            border-color: tan transparent;
+        }
+
+        #wheel div.sec:nth-child(2) {
+            transform: rotate(120deg);
+            -webkit-transform: rotate(120deg);
+            -moz-transform: rotate(120deg);
+            -o-transform: rotate(120deg);
+            -ms-transform: rotate(120deg);
+            border-color: #ffff transparent;
+        }
+
+        #wheel div.sec:nth-child(3) {
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            border-color: tan transparent;
+        }
+
+        #wheel div.sec:nth-child(4) {
+            transform: rotate(240deg);
+            -webkit-transform: rotate(240deg);
+            -moz-transform: rotate(240deg);
+            -o-transform: rotate(240deg);
+            -ms-transform: rotate(240deg);
+            border-color: #ffff transparent;
+        }
+
+        #wheel div.sec:nth-child(5) {
+            transform: rotate(300deg);
+            -webkit-transform: rotate(300deg);
+            -moz-transform: rotate(300deg);
+            -o-transform: rotate(300deg);
+            -ms-transform: rotate(300deg);
+            border-color: tan transparent;
+        }
+
+        #wheel div.sec:nth-child(6) {
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            border-color: #fff transparent;
+        }
+
+        #wheel div.sec .fa {
+            margin-top: -100px;
+            color: rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10000000;
+            display: block;
+            text-align: center;
+            font-size: 36px;
+            margin-left: -15px;
+            text-shadow: rgba(255, 255, 255, 0.1) 0px -1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px;
+        }
+
+        #spin {
+            width: 68px;
+            height: 68px;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 14px;
-            color: #333;
-            font-weight: bold;
+            margin: -34px 0 0 -34px;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 0px;
+            z-index: 1000;
+            background: black;
+            cursor: pointer;
+            font-family: 'Exo 2', sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
         }
 
-        .color-segment-text {
-            position: absolute;
-            top: calc(50% - 100px);
-            left: calc(50% - 15px);
-            transform: translate(-50%, -50%);
-            font-size: 16px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .color-segment-text span {
+        #spin:after {
+            content: "SPIN";
+            text-align: center;
+            line-height: 68px;
+            color: #CCC;
+            text-shadow: 0 2px 0 #fff, 0 -2px 0 rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 100000;
+            width: 68px;
+            height: 68px;
             display: block;
-            text-align: center;
         }
 
-        .question-container {
-            text-align: center;
-            margin-top: 20px;
+        #spin:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 20px 28px 20px;
+            border-color: transparent transparent black transparent;
+            top: -12px;
+            left: 14px;
         }
 
-        .question {
-
-            font-size: 24px;
-            font-weight: bold;
-            width: 300px;
-            height: 100px;
-            text-align: center;
-            padding: 10px;
-            border-radius: 8px;
+        #inner-spin {
+            width: 54px;
+            height: 54px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -27px 0 0 -27px;
+            border-radius: 50%;
+            background: red;
+            z-index: 999;
+            box-shadow: rgba(255, 255, 255, 1) 0px -2px 0px inset, rgba(255, 255, 255, 1) 0px 2px 0px inset,
+                rgba(0, 0, 0, 0.4) 0px 0px 5px;
+            background: rgb(255, 255, 255);
+            background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eaeaea',
+                    GradientType=1);
         }
 
-        .options {
+        #spin:active #inner-spin {
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px inset;
+        }
+
+        #spin:active:after {
+            font-size: 15px;
+        }
+
+        #shine {
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%, rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.99) 1%,
+                    rgba(255, 255, 255, 0.91) 9%, rgba(255, 255, 255, 0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',
+                    GradientType=1);
+            opacity: 0.1;
+        }
+
+        /* ANIMATION */
+        @-webkit-keyframes hh {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(7deg);
+                -webkit-transform: rotate(7deg);
+            }
+        }
+
+        @keyframes hh {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(7deg);
+                -webkit-transform: rotate(7deg);
+            }
+        }
+
+        .spin {
+            -webkit-animation: hh 0.1s;
+            animation: hh 0.1s;
+        }
+
+        #answer-container {
+            margin-top: 50px;
+        }
+
+        #answer-buttons {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 10px;
+            justify-content: space-around;
         }
 
-        .option {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 8px;
+        .answer-button {
+            background-color: tan;
+            color: #fff;
+            border: 3px solid white;
+            padding: 10px 15px;
+            border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-right: 10px;
         }
 
-        .option:hover {
-            background-color: #2980b9;
+        .answer-button:last-child {
+            margin-right: 0;
         }
 
-        .correct-answer {
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #27ae60;
-            text-shadow: 2px 2px 4px rgba(39, 174, 96, 0.7);
-            /* Yansıma rengi ve gölge boyutu */
+        .answer-button:hover {
+            background-color: saddlebrown;
         }
 
-        /* Doğru cevap yansıması için stil */
-        .correct-answer {
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #27ae60;
-            /* Doğru cevap rengi */
-            text-shadow: 2px 2px 4px rgba(39, 174, 96, 0.7);
-            /* Yansıma rengi ve gölge boyutu */
-            transition: color 0.3s;
-            /* Renk değişim animasyonu */
-        }
-
-        /* Yanlış cevap yansıması için stil */
-        .incorrect-answer {
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #e74c3c;
-            /* Yanlış cevap rengi */
-            text-shadow: 2px 2px 4px rgba(231, 76, 60, 0.7);
-            /* Yansıma rengi ve gölge boyutu */
-            transition: color 0.3s;
-            /* Renk değişim animasyonu */
+        #txt {
+            margin-bottom: 50px;
+            color: #fff;
+            top: auto;
+            margin-top: 100px;
+            font-size: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div class="wheel-container">
-        <div class="wheel">
-            <div class="color-segment" style="transform: rotate(-10deg);">
-                <div class="color-segment-text">
-                    <span>coffee</span>
-                </div>
+    <div id="wrapper">
+        <div id="wheel">
+            <div id="inner-wheel">
+                <div class="sec" id="bolum1"><span class="fa fa-beer"></span></div>
+                <div class="sec" id="bolum1"><span class="fa fa-coffee"></span></div>
+                <div class="sec" id="bolum4"><span class="fa fa-beer"></span></div>
+                <div class="sec" id="bolum1"><span class="fa fa-glass"></span></div>
+                <div class="sec" id="bolum6"><span class="fa fa-beer"></span></div>
+                <div class="sec" id="bolum5"><span class="fa fa-lemon-o"></span></div>
             </div>
-            <div class="color-segment" style="transform: rotate(25deg);">
-                <div class="color-segment-text">
-                    <span>tea</span>
-                </div>
+            <div id="spin">
+                <div id="inner-spin"></div>
             </div>
-            <div class="color-segment" style="transform: rotate(62deg);">
-                <div class="color-segment-text">
-                    <span>love</span>
-                </div>
-            </div>
-            <div class="color-segment" style="transform: rotate(98deg);">
-                <div class="color-segment-text">
-                    <span>travel</span>
-                </div>
-            </div>
-            <div class="color-segment" style="transform: rotate(134deg);">
-                <div class="color-segment-text">
-                    <span>breakfast</span>
-                </div>
-            </div>
-            <div class="color-segment" style="transform: rotate(170deg);">
-                <div class="color-segment-text">
-                    <span>sleep</span>
-                </div>
-            </div>
-            <div class="color-segment" style="transform: rotate(206deg);">
-                <div class="color-segment-text">
-                    <span>vacation</span>
-                </div>
-            </div>
-            <div class="color-segment" style="transform: rotate(242deg);">
-                <div class="color-segment-text">
-                    <span>evening</span>
-                </div>
-            </div>
-            <div class="color-segment" style="transform: rotate(278deg);">
-                <div class="color-segment-text">
-                    <span>shower</span>
-                </div>
-            </div>
-            <div class="color-segment" style="transform: rotate(314deg);">
-                <div class="color-segment-text">
-                    <span>dessert</span>
-                </div>
-            </div>
-            <div class="arrow"></div>
+            <div id="shine"></div>
         </div>
-        <div class="triangle"></div>
-        <div class="spin-button-container">
-            <button class="spin-button" onclick="spinWheel()">Spin</button>
-            <div class="correct-answer" id="correct-answer">Correct Answer: Not Yet Selected</div>
-        </div>
-        <div class="question-container">
-            <div class="question"></div>
-            <div class="options">
-                <button class="option" onclick="checkAnswer(0)"></button>
-                <button class="option" onclick="checkAnswer(1)"></button>
-                <button class="option" onclick="checkAnswer(2)"></button>
-                <button class="option" onclick="checkAnswer(3)"></button>
-            </div>
+        <div id="txt"></div>
+        <div id="txt2"></div>
+        <div id="answer-container">
+            <div id="answer-buttons"></div>
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        const wheel = document.querySelector('.wheel');
-        const spinButton = document.querySelector('.spin-button');
-        const questionContainer = document.querySelector('.question-container');
-        const questionText = document.querySelector('.question');
-        const answerButtons = document.querySelectorAll('.option');
-        const correctAnswerMessage = document.getElementById('correct-answer');
-        let spinning = false;
+        $(document).ready(function () {
+            var degree = 1800;
+            var clicks = 0;
 
-        // Create an object containing questions and answers
-        const questionsAndAnswers = [
-            {
-                question: "What color is coffee?",
-                wrongAnswers: ["Blue", "Green", "Yellow"],
-                correctAnswer: "Brown"
-            },
-            {
-                question: "Which drink is made from tea leaves?",
-                wrongAnswers: ["Orange juice", "Cola", "Milk"],
-                correctAnswer: "Tea"
-            },
-            {
-                question: "Which word represents love?",
-                wrongAnswers: ["Car", "House", "Dog"],
-                correctAnswer: "Love"
-            },
-            {
-                question: "Which one is a type of vacation activity?",
-                wrongAnswers: ["Shopping", "Doctor's appointment", "Business meeting"],
-                correctAnswer: "Travel"
-            },
-            {
-                question: "Which drink is made with hot water?",
-                wrongAnswers: ["Orange juice", "Cola", "Milk"],
-                correctAnswer: "Tea"
-            },
-            {
-                question: "Which word represents happiness?",
-                wrongAnswers: ["Car", "House", "Dog"],
-                correctAnswer: "Love"
-            },
-            {
-                question: "Which one is a fruit juice?",
-                wrongAnswers: ["Coffee", "Tea", "Milk"],
-                correctAnswer: "Orange juice"
-            },
-            {
-                question: "Which word represents a trip?",
-                wrongAnswers: ["Car", "House", "Dog"],
-                correctAnswer: "Travel"
-            },
-            {
-                question: "Which drink is obtained from cows?",
-                wrongAnswers: ["Orange juice", "Cola", "Tea"],
-                correctAnswer: "Milk"
-            },
-            {
-                question: "Which word represents a home?",
-                wrongAnswers: ["Car", "Love", "Dog"],
-                correctAnswer: "House"
-            },
-            {
-                question: "Which one is a dessert?",
-                wrongAnswers: ["Coffee", "Tea", "Milk"],
-                correctAnswer: "Dessert"
-            },
-            {
-                question: "Which drink is made with plant leaves?",
-                wrongAnswers: ["Orange juice", "Cola", "Milk"],
-                correctAnswer: "Tea"
-            },
-            {
-                question: "Which word corresponds to a car?",
-                wrongAnswers: ["House", "Love", "Dog"],
-                correctAnswer: "Car"
-            },
-            {
-                question: "Which one is a breakfast item?",
-                wrongAnswers: ["Cola", "Tea", "Milk"],
-                correctAnswer: "Coffee"
-            },
-            {
-                question: "Which drink is made with milk?",
-                wrongAnswers: ["Orange juice", "Coffee", "Tea"],
-                correctAnswer: "Coffee"
-            },
-            {
-                question: "Which word represents a dog?",
-                wrongAnswers: ["Car", "House", "Love"],
-                correctAnswer: "Dog"
-            },
-            {
-                question: "Which one is an evening activity?",
-                wrongAnswers: ["Shopping", "Doctor's appointment", "Business meeting"],
-                correctAnswer: "Evening"
-            },
-            {
-                question: "Which drink is served cold?",
-                wrongAnswers: ["Coffee", "Tea", "Milk"],
-                correctAnswer: "Cola"
-            },
-            {
-                question: "Which word represents a dessert?",
-                wrongAnswers: ["Car", "House", "Dog"],
-                correctAnswer: "Dessert"
+            var questions = [
+                {
+                    question: "What is your favorite color?",
+                    choices: ["Red", "Blue", "Green", "Yellow"],
+                    correctAnswer: "Blue"
+                },
+                {
+                    question: "If you could have any superpower, what would it be?",
+                    choices: ["Flight", "Invisibility", "Super Strength", "Teleportation"],
+                    correctAnswer: "Teleportation"
+                },
+                {
+                    question: "What is your favorite animal?",
+                    choices: ["Dog", "Cat", "Elephant", "Dolphin"],
+                    correctAnswer: "Dog"
+                },
+                {
+                    question: "Which season do you prefer?",
+                    choices: ["Spring", "Summer", "Autumn", "Winter"],
+                    correctAnswer: "Summer"
+                },
+                {
+                    question: "What is your favorite hobby?",
+                    choices: ["Reading", "Cooking", "Gardening", "Traveling"],
+                    correctAnswer: "Reading"
+                },
+                {
+                    question: "If you could visit any country, where would you go?",
+                    choices: ["Japan", "Italy", "Australia", "Canada"],
+                    correctAnswer: "Japan"
+                },
+                {
+                    question: "What is your preferred mode of transportation?",
+                    choices: ["Car", "Bicycle", "Public Transit", "Walking"],
+                    correctAnswer: "Car"
+                },
+                {
+                    question: "What is your favorite type of music?",
+                    choices: ["Rock", "Pop", "Hip Hop", "Classical"],
+                    correctAnswer: "Rock"
+                },
+                {
+                    question: "What is your favorite movie genre?",
+                    choices: ["Action", "Comedy", "Drama", "Sci-Fi"],
+                    correctAnswer: "Sci-Fi"
+                },
+                {
+                    question: "Do you prefer coffee or tea?",
+                    choices: ["Coffee", "Tea", "Lemon", "Choclate"],
+                    correctAnswer: "Coffee"
+                },
+                // Add more questions as needed
+            ];
+
+            function getRandomQuestion() {
+                return questions[Math.floor(Math.random() * questions.length)];
             }
-        ];
 
-        function spinWheel() {
-            if (spinning) return;
-            spinning = true;
-            let totalDegrees = 0;
-            const randomSpins = Math.floor(Math.random() * 10) + 7;
-            const degreesPerSpin = 400;
-            const spinInterval = setInterval(() => {
-                totalDegrees += degreesPerSpin * randomSpins;
-                const totalRotation = `rotate(${totalDegrees}deg)`;
-                wheel.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
-                wheel.style.transform = totalRotation;
-                clearInterval(spinInterval);
-                spinning = false;
-                // Select a random question
-                const randomQuestionIndex = Math.floor(Math.random() * questionsAndAnswers.length);
-                const selectedQuestion = questionsAndAnswers[randomQuestionIndex];
-                questionText.textContent = selectedQuestion.question;
-                // Randomly shuffle the answers
-                const answers = shuffle([...selectedQuestion.wrongAnswers, selectedQuestion.correctAnswer]);
-                // Place the answers into the buttons
-                for (let i = 0; i < answerButtons.length; i++) {
-                    answerButtons[i].textContent = answers[i];
-                    // Add a data attribute to each button with the correct answer
-                    answerButtons[i].dataset.correctAnswer = selectedQuestion.correctAnswer;
+            function updateAnswerButtons(choices) {
+                var buttonsHTML = "";
+                for (var i = 0; i < choices.length; i++) {
+                    buttonsHTML += '<button class="answer-button">' + choices[i] + '</button>';
                 }
-                correctAnswerMessage.textContent = 'Correct Answer: Not Yet Selected';
-            }, 100);
-        }
-
-        // Helper function to shuffle an array
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        // Answer checking function
-        // Answer checking function
-        function checkAnswer(index) {
-            if (spinning) return;
-
-            // İlk olarak tüm yanıtların rengini varsayılan renge döndürün
-            for (let i = 0; i < answerButtons.length; i++) {
-                answerButtons[i].style.backgroundColor = "#3498db"; // Varsayılan renk
-                answerButtons[i].style.color = "white"; // Beyaz metin rengi
+                $('#answer-buttons').html(buttonsHTML);
             }
 
-            const selectedAnswer = answerButtons[index].textContent;
-            const selectedQuestion = questionText.textContent;
-            const correctAnswer = answerButtons[index].dataset.correctAnswer;
+            // Initial setup
+            var initialQuestionObj = getRandomQuestion();
+            document.getElementById("txt").innerHTML = initialQuestionObj.question;
+            updateAnswerButtons(initialQuestionObj.choices);
 
-            if (selectedAnswer === correctAnswer) {
-                correctAnswerMessage.textContent = `Correct Answer: ${selectedAnswer}`;
-                correctAnswerMessage.classList.remove('incorrect-answer');
-                correctAnswerMessage.classList.add('correct-answer');
-            } else {
-                correctAnswerMessage.textContent = `Sorry, wrong answer. Correct Answer: ${correctAnswer}`;
-                correctAnswerMessage.classList.remove('correct-answer');
-                correctAnswerMessage.classList.add('incorrect-answer');
-            }
+            $('#spin').click(function () {
+                clicks++;
 
-            // Seçilen yanıtın rengini değiştirin
-            answerButtons[index].style.backgroundColor = "#e74c3###c"; // Seçilen yanıtın rengi (#e74c3c)
-            answerButtons[index].style.color = "white"; // Beyaz metin rengi
+                var newDegree = degree * clicks;
+                var extraDegree = Math.floor(Math.random() * 360) + 1;
+                var totalDegree = newDegree + extraDegree;
 
-            // Yeni bir soru sorduğunuzda yanıtların rengini varsayılana döndürün
-            setTimeout(() => {
-                for (let i = 0; i < answerButtons.length; i++) {
-                    answerButtons[i].style.backgroundColor = "#3498db"; // Varsayılan renk
-                    answerButtons[i].style.color = "white"; // Beyaz metin rengi
+                $('#wheel .sec').each(function (index) {
+                    var angle = totalDegree + (index * 60);
+                    $(this).css({
+                        'transform': 'rotate(' + angle + 'deg)'
+                    });
+                });
+
+                $('#inner-wheel').css({
+                    'transition': 'transform 6s cubic-bezier(0,.99,.44,.99)',
+                    'transform': 'rotate(' + totalDegree + 'deg)'
+                });
+
+                var spinText = "SPIN";
+                if (clicks > 1) {
+                    spinText = "SPIN AGAIN";
                 }
-            }, 3000); // 1000 milisaniye (1 saniye) sonra renkleri sıfırlayın
-        }
 
-       
+                $('#spin:after').html(spinText);
+                $('#spin').addClass('spin');
 
+                setTimeout(function () {
+                    $('#spin').removeClass('spin');
+                    $('#answer-buttons button').prop('disabled', false);
 
-        // Show a random question initially
-        spinWheel();
+                    var randomQuestionObj = getRandomQuestion();
+                    document.getElementById("txt").innerHTML = randomQuestionObj.question;
+                    document.getElementById("txt2").innerHTML = "";
+
+                    updateAnswerButtons(randomQuestionObj.choices);
+
+                    // Add click event for answer buttons after updating choices
+                    $('#answer-buttons').off('click', '.answer-button').on('click', '.answer-button', function () {
+                        var selectedAnswer = $(this).text();
+                        var correctAnswer = randomQuestionObj.correctAnswer;
+
+                        if (selectedAnswer === correctAnswer) {
+                            document.getElementById("txt2").innerHTML = "Correct! You selected: " + selectedAnswer;
+                        } else {
+                            document.getElementById("txt2").innerHTML = "Wrong! The correct answer is: " + correctAnswer;
+                        }
+
+                        $('#answer-buttons button').prop('disabled', true);
+                    });
+                }, 5000);
+            });
+        });
     </script>
 </body>
 

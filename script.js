@@ -43,18 +43,20 @@ $(document).ready(function () {
             choices: ["Keanu Reeves", "Tom Cruise", "Will Smith", "Brad Pitt"],
             correctAnswer: "Keanu Reeves"
         },
-    
+
         {
             question: "Which season do you prefer?",
             choices: ["Spring", "Summer", "Autumn", "Winter"],
             correctAnswer: "Summer"
         },
-       
+
         {
             question: "If you could visit any country, where would you go?",
             choices: ["Japan", "Italy", "Australia", "Canada"],
             correctAnswer: "Japan"
-        }, {
+        },
+        {
+
             question: "Who directed the movie 'Inception'?",
             choices: ["Christopher Nolan", "Quentin Tarantino", "Steven Spielberg", "Martin Scorsese"],
             correctAnswer: "Christopher Nolan"
@@ -63,10 +65,16 @@ $(document).ready(function () {
             question: "In which year was the first 'Star Wars' movie released?",
             choices: ["1975", "1977", "1980", "1983"],
             correctAnswer: "1977"
-        },  {
-            question: "Which film won the Academy Award for Best Animated Feature in 2019?",
-            choices: ["Frozen II", "Toy Story 4", "How to Train Your Dragon: The Hidden World", "Missing Link"],
-            correctAnswer: "Toy Story 4"
+        },
+        {
+            "question": "Who wrote the science fiction novel 'Dune'?",
+            "choices": ["Isaac Asimov", "Philip K. Dick", "Arthur C. Clarke", "Frank Herbert"],
+            "correctAnswer": "Frank Herbert"
+        },
+        {
+            "question": "In which book series would you find the character Katniss Everdeen?",
+            "choices": ["Divergent", "The Maze Runner", "The Hunger Games", "Harry Potter"],
+            "correctAnswer": "The Hunger Games"
         },
         {
             question: "Who played the lead role in the movie 'Inglourious Basterds'?",
@@ -88,8 +96,8 @@ $(document).ready(function () {
             choices: ["Corleone", "Soprano", "Gambino", "Barzini"],
             correctAnswer: "Corleone"
         }
-      
-       
+
+
     ];
 
     function getRandomQuestion() {

@@ -158,9 +158,9 @@ $(document).ready(function () {
                 var correctAnswer = randomQuestionObj.correctAnswer;
 
                 if (selectedAnswer === correctAnswer) {
-                    document.getElementById("txt2").innerHTML = "Correct! You selected: " + selectedAnswer;
+                    document.getElementById("txt2").innerHTML = "True! You selected: " + selectedAnswer;
                 } else {
-                    document.getElementById("txt2").innerHTML = "Wrong! The correct answer is: " + correctAnswer;
+                    document.getElementById("txt2").innerHTML = "False! The correct answer is: " + correctAnswer;
                 }
 
                 $('#answer-buttons button').prop('disabled', true);

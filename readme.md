@@ -1,5 +1,5 @@
 
-<h1 align="center">Hi Cezalı Çark! 🧠</h1>
+<h1 align="center">🎮 Cezalı Çark! 🧠</h1>
 
 🔄 Çarkı çevir, soruları cevapla ve bilgi seviyeni test et! 🌟 Ama dikkat, yanlış cevap verirsen, çarkın durduğu alandaki cezayı yapmak zorundasın! 😅 
 Hemen oyna 👉 [https://question-wheel-yhe7-csesocvq7-mrvozturk.vercel.app] 

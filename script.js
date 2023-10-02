@@ -62,19 +62,29 @@ $(document).ready(function () {
             correctAnswer: "Christopher Nolan"
         },
         {
+            question: "Which planet is known as the 'Red Planet'?",
+            choices: ["Venus", "Mars", "Jupiter", "Saturn"],
+            correctAnswer: "Mars"
+        },
+        {
             question: "In which year was the first 'Star Wars' movie released?",
             choices: ["1975", "1977", "1980", "1983"],
             correctAnswer: "1977"
         },
         {
-            "question": "Who wrote the science fiction novel 'Dune'?",
-            "choices": ["Isaac Asimov", "Philip K. Dick", "Arthur C. Clarke", "Frank Herbert"],
-            "correctAnswer": "Frank Herbert"
+            question: "Who painted the 'Starry Night'?",
+            choices: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+            correctAnswer: "Vincent van Gogh"
         },
         {
-            "question": "In which book series would you find the character Katniss Everdeen?",
-            "choices": ["Divergent", "The Maze Runner", "The Hunger Games", "Harry Potter"],
-            "correctAnswer": "The Hunger Games"
+            question: "Who is the author of 'To Kill a Mockingbird'?",
+            choices: ["J.K. Rowling", "Harper Lee", "George Orwell", "Ernest Hemingway"],
+            correctAnswer: "Harper Lee"
+        },
+        {
+            question: "Which English playwright is often referred to as the 'Bard of Avon'?",
+            choices: ["Christopher Marlowe", "William Shakespeare", "John Milton", "Jane Austen"],
+            correctAnswer: "William Shakespeare"
         },
         {
             question: "Who played the lead role in the movie 'Inglourious Basterds'?",

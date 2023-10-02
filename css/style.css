@@ -4,7 +4,7 @@
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 40px;
     text-align: center;
     margin-top: 50px;
 }
@@ -17,28 +17,23 @@ body {
     font-family: 'Exo 2', sans-serif;
 }
 
-
 a {
     color: #34495e;
 }
 
-/* WRAPPER */
 #wrapper {
     margin: 40px auto 0;
-    width: 266px;
+    width: 500px;
     position: relative;
 }
 
-
-
-/* WHEEL */
 #wheel {
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    border: 8px solid #fff;
+    border: 5px solid #fff;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px, rgba(0, 0, 0, 0.05) 0px 3px 0px;
     transform: rotate(0deg);
 }
@@ -46,10 +41,10 @@ a {
 #wheel:before {
     content: '';
     position: absolute;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 242px;
-    height: 242px;
-    border-radius: 50%;
+    border: 10px solid rgba(0, 0, 0, 0.1);
+    width: 500px;
+    height: 500px;
+    border-radius: 100%;
     z-index: 1000;
 }
 
@@ -68,13 +63,14 @@ a {
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 130px 75px 0;
+    border-width: 250px 150px 0;
     border-color: #19c transparent;
-    transform-origin: 75px 129px;
-    left: 50px;
-    top: -4px;
-    opacity: 1;
+    transform-origin: 140px 250px;
+    left: 110px;
+    top: 0;
+    opacity: 15;
 }
+
 
 #wheel div.sec:nth-child(1) {
     transform: rotate(60deg);
@@ -131,14 +127,14 @@ a {
 }
 
 #wheel div.sec .fa {
-    margin-top: -100px;
+    margin-top: -150px;
     color: rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 10000000;
     display: block;
     text-align: center;
-    font-size: 36px;
-    margin-left: -15px;
+    font-size: 45px;
+    margin-left: -19px;
     text-shadow: rgba(255, 255, 255, 0.1) 0px -1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px;
 }
 
@@ -271,12 +267,13 @@ a {
 }
 
 #answer-container {
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 #answer-buttons {
     display: flex;
     justify-content: space-around;
+    margin-top: -30px;
 }
 
 .answer-button {
@@ -299,6 +296,15 @@ a {
 }
 
 #txt {
+    text-align: center;
+    margin-bottom: 70px;
+    color: #fff;
+    top: auto;
+    margin-top: 20px;
+    font-size: 20px;
+}
+#txt2 {
+    text-align: center;
     margin-bottom: 70px;
     color: #fff;
     top: auto;
